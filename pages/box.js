@@ -112,23 +112,38 @@ export default function ClippedDrawer() {
       </Drawer> */}
 
       <Grid container spacing={3}>
-        <Grid item md="6" xs="6">
-          <Box style={{ xs: 'marginLeft:180px'}}>
-            <Paper pt={5}>
-              <Box style={{fontWeight:'bold', paddingTop:'20px', marginLeft:'180px'}}>Classwork</Box>
+        <Grid item md="6" xs="6"  style={{paddingTop:'20px', marginLeft:'120px'}}>
+          <Box p={{ md: 5, xs: 7, sm: 3 }}>
+            <Paper pt={5} style={{marginLeft:'120px'}}>
+            <p>heyyyy</p>
+<p style={{marginLeft:'0px'}}>sth</p>
+<p style={{marginLeft:'0px'}}>sth</p>
             </Paper>
           </Box>
         </Grid>
 
-        <Grid item md="6" xs="6">
+        <Grid item md="6" xs="6"  style={{paddingTop:'20px', marginLeft:'120px'}}>
           <Box p={{ md: 5, xs: 7, sm: 3 }}>
-            <Paper pt={5}>
-              <Box pt={5} pl={5} textAlign="center" style={{fontWeight:'bold', paddingTop:'20px'}}>
-                Peoples
-              </Box>
+            <Paper pt={5} style={{marginLeft:'120px'}}>
+            <p>heyyyyghfchjhghjihjvfjhjykihkihoipk[po</p>
+<p style={{marginLeft:'0px'}}>sth</p>
+<p style={{marginLeft:'0px'}}>sth</p>
             </Paper>
           </Box>
         </Grid>
+
+<Grid item xs={6} sm={6} md={6}>
+<Paper>
+<Box pt={5} textAlign="center" style={{fontWeight:'bold'}}>Drown</Box>
+</Paper>
+</Grid>
+        
+        <Grid item xs={6} sm={6} md={6}>
+<Paper>
+<Box>Getout</Box>
+</Paper>
+</Grid>
+
 
         <Grid item md="12" xs="12">
           <Box p={{ md: 5, xs: 7, sm: 3 }}>
