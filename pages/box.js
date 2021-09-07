@@ -124,7 +124,7 @@ export default function ClippedDrawer() {
           <Box p={{ md: 5, xs: 7, sm: 3 }}>
             <Paper pt={5}>
               <Box pt={5} pl={5} textAlign="center" style={{fontWeight:'bold', paddingTop:'20px'}}>
-                People
+                Peoples
               </Box>
             </Paper>
           </Box>
