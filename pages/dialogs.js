@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Dialog from '@material-ui/core/Dialog';
@@ -6,7 +6,7 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
-
+import { Container, Grid, Paper, Box, Typography } from "@material-ui/core";
 
 import Drawer from "@material-ui/core/Drawer";
 import Toolbar from "@material-ui/core/Toolbar";
@@ -25,6 +25,22 @@ import Link from "next/link";
 export default function FormDialog() {
   const [open, setOpen] = React.useState(false);
 
+  const [title,setTitle] = useState("");
+  const [question,setQuestion] = useState("");
+  const [desc,setDesc] = useState("");
+  const [points,setPoints] = useState("");
+  const [date,setDate] = useState("");
+  const [status,setStatus] = useState("");
+
+  const data = {
+    title: title,
+    question: question,
+    desc: desc,
+    points: points,
+    date: date,
+    status: status
+}
+
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -32,6 +48,39 @@ export default function FormDialog() {
   const handleClose = () => {
     setOpen(false);
   };
+
+
+   
+  const handleSubmit= async(e) =>{
+    e.preventDefault();
+    const docRef =  await addDoc(collection(db,"projects"),data)
+    .then((docRef)=> {
+            console.log("Project added",docRef.id)
+        })
+        .catch((error)=>{
+                console.error("Error occurred while adding project",error)
+            })
+}
+
+const  changeState = () => {  
+  setStatus({status: 'Submitted'}); 
+ }; 
+ 
+const changeTitle = (e)=>{
+  setTitle(e.target.value);
+}
+const changeQn = (e)=>{
+  setQuestion(e.target.value);
+}
+const changeDesc = (e)=>{
+  setDesc(e.target.value);
+}
+const changePoints = (e) => {
+  setPoints(e.target.value);
+}
+const changeDate = (e) => {
+  setDate(e.target.value);
+}
 
   return (
     <div>
@@ -98,9 +147,9 @@ export default function FormDialog() {
       </Drawer> */}
 
       <Grid item md="12" xs="12">
-          <Box p={{ md: 5, xs: 7, sm: 3 }}>
+          <Box p={{ md: 5, xs: 7, sm: 3 }} >
             <Paper>
-              <Box pt={1} textAlign="left" fontWeight='bold'>
+              <Box pt={1} textAlign="center" fontWeight='bold' style={{marginLeft:'250px'}}>
                 
       <Button variant="outlined" color="primary" onClick={handleClickOpen}>
         Open form dialog
@@ -113,62 +162,94 @@ export default function FormDialog() {
       <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
         <DialogTitle id="form-dialog-title">Add Project</DialogTitle>
         <DialogContent>
-          <label>Title</label>
+        <form onSubmit = {handleSubmit}>
+          
           <TextField
             autoFocus
             margin="dense"
             id="name"
-            label="title"
+            label="Title"
             type="text"
+            name = "title"
+            value = {title}
+            onChange = {changeTitle}
             fullWidth
           />
 
-<label>Question</label>
+
           <TextField
             autoFocus
             margin="dense"
             id="name"
             label="Question"
+            name = "question" 
+            value = {question}
+             onChange = {changeQn}
             type="text"
             fullWidth
           />
 
-<label>Description</label>
+
           <TextField
             autoFocus
             margin="dense"
             id="name"
             label="Description"
+            name = "desc"
+             value = {desc}
+            onChange = {changeDesc}
             type="text"
             fullWidth
           />
 
-<label>Status</label>
+          
+
+          <TextField
+            autoFocus
+            margin="dense"
+            id="name"
+            label="Points"
+            name = "points" 
+            value = {points} 
+            onChange = {changePoints}
+            type="text"
+            fullWidth
+          />
+
+
           <TextField
             autoFocus
             margin="dense"
             id="name"
             label="Status"
             type="text"
+            name = "status"
+             value = {status} 
+             onChange = {changeState}
             fullWidth
           />
 
-<label>Due date</label>
+
           <TextField
             autoFocus
             margin="dense"
             id="name"
             type="date"
+            name = "date"
+             value = {date} 
+             onChange = {changeDate}
             fullWidth
           />
+                  </form>
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose} color="primary">
             Cancel
           </Button>
           <Button onClick={handleClose} color="primary">
-            Subscribe
+            Add
           </Button>
+  
         </DialogActions>
       </Dialog>
     </div>
